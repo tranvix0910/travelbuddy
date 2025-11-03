@@ -19,6 +19,8 @@ phases:
     commands:
       - echo "=== POST-BUILD PHASE ==="
       - echo "Build completed on `date`"
+      - echo "Renaming WAR file to ROOT.war"
+      - mv target/travelbuddy.war target/ROOT.war
 artifacts:
   files:
     - target/ROOT.war
