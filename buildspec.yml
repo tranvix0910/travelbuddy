@@ -4,23 +4,13 @@ phases:
   install:
     runtime-versions:
       java: corretto11
-    commands:
-      - echo "=== INSTALL PHASE ==="
-      - mvn -v
-  pre_build:
-    commands:
-      - echo "=== PRE-BUILD PHASE ==="
-      - mvn clean
+      maven: 3.9
   build:
     commands:
-      - echo "=== BUILD PHASE ==="
-      - mvn package -DskipTests=true
-  post_build:
-    commands:
-      - echo "=== POST-BUILD PHASE ==="
-      - echo "Build completed on `date`"
-      - echo "Renaming WAR file to ROOT.war"
-      - mv target/travelbuddy.war target/ROOT.war
+      - echo "🔨 Building TravelBuddy WAR..."
+      - mvn clean package -DskipTests=true
+      - echo "📦 Rename WAR to ROOT.war for Elastic Beanstalk"
+      - mv target/*.war ROOT.war
 artifacts:
   files:
-    - target/ROOT.war
+    - ROOT.war
